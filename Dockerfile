@@ -10,5 +10,5 @@ RUN yarn install
 
 RUN yarn build
 
-CMD yarn config-validator ../config
+CMD yarn validate-config ../config
 
