@@ -1,7 +1,11 @@
 name: Build and Publish Docker Image
 
 on:
-  pull_request
+  pull_request:
+    paths:
+    - .github/workflows/docker-build.yml
+    - build.sh
+    - Dockerfile
 
 env:
   REGISTRY: ghcr.io
