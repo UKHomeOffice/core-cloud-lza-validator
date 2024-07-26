@@ -12,5 +12,4 @@ release=$(git describe --tags --abbrev=0)
 git -c advice.detachedHead=false checkout $release
 cd ..
 echo $release
-docker buildx build --platform linux/amd64 --tag cc-lza-validator:$release .
-docker images
+docker build --platform linux/amd64 --tag cc-lza-validator:$release .
