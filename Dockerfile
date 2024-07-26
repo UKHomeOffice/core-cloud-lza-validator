@@ -1,24 +1,17 @@
-# FROM node:18.20-alpine
-
-# RUN apk update && apk add --no-cache python3 py3-pip g++ make
-# COPY /source /source
-# WORKDIR /source
-# RUN export NODE_OPTIONS=--max_old_space_size=8192
-# RUN yarn install
-# RUN yarn build
-# RUN yarn cache clean
-
-FROM --platform=linux/amd64 node:lts-alpine3.17
+FROM node:18-alpine3.20
 WORKDIR /lza
-COPY . .
+COPY landing-zone-accelerator-on-aws .
 # COPY lza-validator.sh ./lza-validator.sh
 
 RUN mkdir config
+RUN VERSION=$(echo $release | tr -cd [0-9])
 RUN cd source \
     && export NODE_OPTIONS=--max_old_space_size=8192 \
     && yarn install \
     && yarn build \
     && yarn cache clean
 
-CMD yarn validate-config ../config
+# ENTRYPOINT ["/lza/lza-validator.sh"]
+# CMD ["/lza/config/"]
+CMD yarn validate config ../config
 
