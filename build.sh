@@ -12,4 +12,9 @@ release=$(git describe --tags --abbrev=0)
 git -c advice.detachedHead=false checkout $release
 cd ..
 echo $release
-docker build --platform linux/amd64 --tag cc-lza-validator:$release .
+image_name=cc-lza-validator
+image_id=ghcr.io/UKHomeOffice/$image_name
+image_id=$(echo $image_id | tr '[A-Z]' '[a-z]')
+
+docker build --platform linux/amd64 --tag $image_id:$release .
+docker tag $image_id:$release $image_id:latest
