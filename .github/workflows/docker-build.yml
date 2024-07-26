@@ -34,6 +34,6 @@ jobs:
       run: |
         tags=$(docker image inspect ghcr.io/ukhomeoffice/cc-lza-validator:latest | jq '.[0].RepoTags')
         echo $tags
-        # for tag in $tags: do
-        #   docker push $tag
-        # done
+        for tag in $tags: do
+          docker push $tag
+        done
