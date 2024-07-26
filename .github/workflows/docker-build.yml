@@ -32,5 +32,8 @@ jobs:
 
     - name: Publish Docker Image
       run: |
-        tags=$(ghcr.io/ukhomeoffice/cc-lza-validator:latest | jq '.[0].RepoTags')
+        tags=$(docker image inspect ghcr.io/ukhomeoffice/cc-lza-validator:latest | jq '.[0].RepoTags')
         echo $tags
+        # for tag in $tags: do
+        #   docker push $tag
+        # done
